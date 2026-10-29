@@ -1,0 +1,12 @@
+name: Jellyfin
+description: Free media server for your movies, shows and music.
+docker:
+  image: jellyfin/jellyfin:latest
+  ports:
+    - "8096:8096"
+  volumes:
+    - "${CONFIG_PATH}/jellyfin:/config"
+    - "${MEDIA_PATH}:/media"
+  environment:
+    PUID: 1000
+    PGID: 1000

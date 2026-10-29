@@ -1,0 +1,11 @@
+.PHONY: backend frontend build
+
+backend:
+	cd backend && uvicorn app.main:app --reload
+
+frontend:
+	cd frontend && npm run dev
+
+build:
+	cd frontend && npm install && npm run build
+	rm -rf backend/app/static && cp -r frontend/dist backend/app/static

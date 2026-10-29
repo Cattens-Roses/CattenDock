@@ -1,0 +1,11 @@
+name: AdGuard Home
+description: Network-wide ad and tracker blocking DNS server.
+docker:
+  image: adguard/adguardhome:latest
+  ports:
+    - "3000:3000"
+    - "53:53/udp"
+    - "53:53/tcp"
+  volumes:
+    - "${DATA_PATH}/adguard/work:/opt/adguardhome/work"
+    - "${DATA_PATH}/adguard/conf:/opt/adguardhome/conf"

@@ -1,0 +1,8 @@
+name: Nextcloud
+description: Self-hosted file sync and share.
+docker:
+  image: nextcloud:latest
+  ports:
+    - "8080:80"
+  volumes:
+    - "${DATA_PATH}/nextcloud:/var/www/html"
