@@ -1,0 +1,13 @@
+Package: cattendock
+Version: @VERSION@
+Architecture: @ARCH@
+Maintainer: Your Name <you@example.com>
+Installed-Size: @SIZE@
+Depends: python3 (>= 3.11), python3-venv, docker.io | docker-ce, adduser, systemd, ca-certificates
+Section: admin
+Priority: optional
+Homepage: https://github.com/YOUR_USER/cattendock
+Description: A minimal CasaOS-like homelab dashboard for Debian 12
+ CattenDock turns a fresh Debian 12 install into a web-managed
+ homelab server. Manage Docker containers, deploy curated apps
+ from a YAML catalog, and monitor system stats from a single UI.

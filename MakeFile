@@ -9,3 +9,5 @@ frontend:
 build:
 	cd frontend && npm install && npm run build
 	rm -rf backend/app/static && cp -r frontend/dist backend/app/static
+deb:
+	bash scripts/build-deb.sh

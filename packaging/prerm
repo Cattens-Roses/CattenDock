@@ -1,0 +1,13 @@
+#!/bin/bash
+set -e
+
+case "$1" in
+  remove|deconfigure)
+    if systemctl is-active --quiet cattendock; then
+      systemctl stop cattendock || true
+    fi
+    systemctl disable cattendock >/dev/null 2>&1 || true
+    ;;
+esac
+
+exit 0

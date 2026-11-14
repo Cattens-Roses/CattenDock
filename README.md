@@ -16,15 +16,30 @@ Manage Docker containers, deploy curated apps, and watch system stats from one w
 - [ ] Storage / SMB management
 - [ ] Custom `.deb` and ISO builds
 
-## Quick start (dev)
-```bash
-# backend
-cd backend
-python3 -m venv venv && source venv/bin/activate
-pip install -r requirements.txt -r requirements-dev.txt
-uvicorn app.main:app --reload
+## Install on Debian 12
 
-# frontend (separate terminal)
-cd frontend
-npm install
-npm run dev
+Grab the latest `.deb` from [Releases](../../releases) and install:
+
+```bash
+sudo apt install ./cattendock_0.2.0_amd64.deb
+```
+
+Open `http://<your-host>:8000`, create the admin account, done.
+
+```bash
+cattendock status    # service health
+cattendock logs      # tail logs
+cattendock url       # print dashboard URL
+```
+
+- Config: `/etc/cattendock/cattendock.env`
+- Data:   `/opt/cattendock/data/`
+- `apt remove` keeps data; `apt purge` wipes it.
+
+### Build the package yourself
+
+```bash
+# on Debian 12 (or `docker run --rm -it -v $PWD:/src -w /src debian:bookworm`)
+sudo apt install python3-venv python3-pip python3-dev nodejs npm dpkg-dev build-essential
+make deb        # → build/cattendock_0.2.0_amd64.deb
+```

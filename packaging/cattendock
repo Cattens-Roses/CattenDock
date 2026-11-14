@@ -1,0 +1,24 @@
+#!/bin/bash
+set -e
+
+case "${1:-}" in
+  status)  systemctl status cattendock --no-pager ;;
+  start)   sudo systemctl start cattendock && echo "started" ;;
+  stop)    sudo systemctl stop cattendock && echo "stopped" ;;
+  restart) sudo systemctl restart cattendock && echo "restarted" ;;
+  logs)    journalctl -u cattendock -f ;;
+  url)     echo "http://$(hostname -I | awk '{print $1}'):8000" ;;
+  *)
+    cat <<EOF
+Usage: cattendock <command>
+
+Commands:
+  status    Show service status
+  start     Start the service
+  stop      Stop the service
+  restart   Restart the service
+  logs      Tail the service logs (Ctrl-C to exit)
+  url       Print the dashboard URL
+EOF
+    ;;
+esac

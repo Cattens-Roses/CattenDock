@@ -8,3 +8,6 @@ dist/
 backend/app/static/
 .env
 .DS_Store
+build/
+packaging/wheels/
+*.deb

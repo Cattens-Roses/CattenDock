@@ -1,0 +1,24 @@
+[Unit]
+Description=CattenDock homelab dashboard
+After=network-online.target docker.service
+Wants=network-online.target
+Requires=docker.service
+
+[Service]
+Type=simple
+User=cattendock
+Group=cattendock
+SupplementaryGroups=docker
+WorkingDirectory=/opt/cattendock/backend
+EnvironmentFile=-/etc/cattendock/cattendock.env
+ExecStart=/opt/cattendock/backend/venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+ReadWritePaths=/opt/cattendock/data
+
+[Install]
+WantedBy=multi-user.target

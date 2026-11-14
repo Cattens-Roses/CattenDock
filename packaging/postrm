@@ -1,0 +1,19 @@
+#!/bin/bash
+set -e
+
+case "$1" in
+  purge)
+    rm -rf /opt/cattendock
+    if getent passwd cattendock >/dev/null; then
+      deluser --system cattendock || true
+    fi
+    if getent group cattendock >/dev/null; then
+      delgroup --system cattendock || true
+    fi
+    ;;
+  remove)
+    systemctl daemon-reload
+    ;;
+esac
+
+exit 0
